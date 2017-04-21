@@ -1,0 +1,266 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/nmn/react-timeago"
+
+    >react-timeago (v3.2.0)</a>
+</h1>
+<h4>A simple Time-Ago component for ReactJs</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.react-timeago">module react-timeago</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.react-timeago.default">
+            function <span class="apidocSignatureSpan">react-timeago.</span>default
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">react-timeago.</span>buildFormatter</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">react-timeago.</span>defaultFormatter</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.react-timeago.buildFormatter">module react-timeago.buildFormatter</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.react-timeago.buildFormatter.default">
+            function <span class="apidocSignatureSpan">react-timeago.buildFormatter.</span>default
+            <span class="apidocSignatureSpan">(strings)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.react-timeago.defaultFormatter">module react-timeago.defaultFormatter</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.react-timeago.defaultFormatter.default">
+            function <span class="apidocSignatureSpan">react-timeago.defaultFormatter.</span>default
+            <span class="apidocSignatureSpan">(value, unit, suffix)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.react-timeago" id="apidoc.module.react-timeago">module react-timeago</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.react-timeago.default" id="apidoc.element.react-timeago.default">
+        function <span class="apidocSignatureSpan">react-timeago.</span>default
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function TimeAgo() {
+  var _ref;
+
+  var _temp, _this, _ret;
+
+  _classCallCheck(this, TimeAgo);
+
+  for (var _len = arguments.length, args = Array(_len), _key = 0; _key &#x3c; _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = TimeAgo.__proto__ || Object.getPrototypeOf(TimeAgo)).
+call.apply(_ref, [this].concat(args))), _this), _this.isStillMounted = false, _this.tick = function (refresh) {
+    if (!_this.isStillMounted || !_this.props.live) {
+      return;
+    }
+
+    var then = new Date(_this.props.date).valueOf();
+    if (Number.isNaN(then)) {
+      console.warn(&#x27;[react-timeago] Invalid Date provided&#x27;);
+      return;
+    }
+
+    var now = Date.now();
+    var seconds = Math.round(Math.abs(now - then) / 1000);
+
+    var unboundPeriod = seconds &#x3c; MINUTE ? 1000 : seconds &#x3c; HOUR ? 1000 * MINUTE : seconds &#x3c; DAY ? 1000 * HOUR : 0;
+    var period = Math.min(Math.max(unboundPeriod, _this.props.minPeriod * 1000), _this.props.maxPeriod * 1000);
+
+    if (period) {
+      _this.timeoutId = setTimeout(_this.tick, period);
+    }
+
+    if (!refresh) {
+      _this.forceUpdate();
+    }
+  }, _temp), _possibleConstructorReturn(_this, _ret);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.react-timeago.buildFormatter" id="apidoc.module.react-timeago.buildFormatter">module react-timeago.buildFormatter</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.react-timeago.buildFormatter.default" id="apidoc.element.react-timeago.buildFormatter.default">
+        function <span class="apidocSignatureSpan">react-timeago.buildFormatter.</span>default
+        <span class="apidocSignatureSpan">(strings)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function buildFormatter(strings) {
+  return function formatter(value, unit, suffix, epochMillis) {
+    // convert weeks to days if strings don&#x27;t handle weeks
+    var now = Date.now();
+    if (unit === &#x27;week&#x27; &#x26;&#x26; !strings.week &#x26;&#x26; !strings.weeks) {
+      var _days = Math.round(Math.abs(epochMillis - now) / (1000 * 60 * 60 * 24));
+      value = _days;
+      unit = &#x27;day&#x27;;
+    }
+
+    // create a normalize function for given value
+    var normalize = normalizeFn(value, now - epochMillis, strings.numbers);
+
+    // The eventual return value stored in an array so that the wordSeparator can be used
+    var dateString = [];
+
+    // handle prefixes
+    if (suffix === &#x27;ago&#x27; &#x26;&#x26; strings.prefixAgo) {
+      dateString.push(normalize(strings.prefixAgo));
+    }
+    if (suffix === &#x27;from now&#x27; &#x26;&#x26; strings.prefixFromNow) {
+      dateString.push(normalize(strings.prefixFromNow));
+    }
+
+    // Handle Main number and unit
+    var isPlural = value &#x3e; 1;
+    if (isPlural) {
+      var stringFn = strings[unit + &#x27;s&#x27;] || strings[unit] || &#x27;%d &#x27; + unit;
+      dateString.push(normalize(stringFn));
+    } else {
+      var _stringFn = strings[unit] || strings[unit + &#x27;s&#x27;] || &#x27;%d &#x27; + unit;
+      dateString.push(normalize(_stringFn));
+    }
+
+    // Handle Suffixes
+    if (suffix === &#x27;ago&#x27; &#x26;&#x26; strings.suffixAgo) {
+      dateString.push(normalize(strings.suffixAgo));
+    }
+    if (suffix === &#x27;from now&#x27; &#x26;&#x26; strings.suffixFromNow) {
+      dateString.push(normalize(strings.suffixFromNow));
+    }
+
+    // join the array into a string and return it
+    var wordSeparator = strings.wordSeparator || &#x27; &#x27;;
+    return dateString.join(wordSeparator);
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.react-timeago.defaultFormatter" id="apidoc.module.react-timeago.defaultFormatter">module react-timeago.defaultFormatter</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.react-timeago.defaultFormatter.default" id="apidoc.element.react-timeago.defaultFormatter.default">
+        function <span class="apidocSignatureSpan">react-timeago.defaultFormatter.</span>default
+        <span class="apidocSignatureSpan">(value, unit, suffix)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function defaultFormatter(value, unit, suffix) {
+  if (value % 10 !== 1 || value % 100 === 11) {
+    unit += &#x27;s&#x27;;
+  }
+  return value + &#x27; &#x27; + unit + &#x27; &#x27; + suffix;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
